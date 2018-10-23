@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "zDownloadManager.h"
+
 
 @interface ViewController ()
 
@@ -16,9 +18,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    UIButton *downloadBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [downloadBtn setTitle:@"下载" forState:UIControlStateNormal];
+    [downloadBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    downloadBtn.frame = CGRectMake(100, 100, 80, 60);
+    [downloadBtn addTarget:self action:@selector(downloadFile) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:downloadBtn];
 }
 
+- (void)downloadFile
+{
+    NSString *fileUrl = @"";
+    [[zDownloadManager sharedInstance] startDownloadFromUrl:fileUrl];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
